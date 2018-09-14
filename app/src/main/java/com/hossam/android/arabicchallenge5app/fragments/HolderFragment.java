@@ -1,4 +1,4 @@
-package com.hossam.android.arabicchallenge5app;
+package com.hossam.android.arabicchallenge5app.fragments;
 
 
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hossam.android.arabicchallenge5app.R;
 import com.hossam.android.arabicchallenge5app.test.show.ShowFragment;
 import com.hossam.android.arabicchallenge5app.test.start.ResultFragment;
 import com.jkb.fragment.rigger.annotation.Puppet;

@@ -1,4 +1,4 @@
-package com.hossam.android.arabicchallenge5app;
+package com.hossam.android.arabicchallenge5app.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
+import com.hossam.android.arabicchallenge5app.activities.MainActivity;
+import com.hossam.android.arabicchallenge5app.R;
 import com.hossam.android.arabicchallenge5app.base.BaseFragment;
 import com.hossam.android.arabicchallenge5app.test.lazyload.LazyLoadFragment;
 import com.hossam.android.arabicchallenge5app.test.replace.ReplaceFragment;

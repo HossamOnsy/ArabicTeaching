@@ -1,12 +1,10 @@
-package com.hossam.android.arabicchallenge5app;
+package com.hossam.android.arabicchallenge5app.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hossam.android.arabicchallenge5app.test.show.ShowFragment;
-import com.hossam.android.arabicchallenge5app.test.start.ResultFragment;
-import com.hossam.android.arabicchallenge5app.test.start.StartFragment;
+import com.hossam.android.arabicchallenge5app.fragments.HolderFragment;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 5;

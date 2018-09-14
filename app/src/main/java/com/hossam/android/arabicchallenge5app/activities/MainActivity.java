@@ -1,14 +1,13 @@
-package com.hossam.android.arabicchallenge5app;
+package com.hossam.android.arabicchallenge5app.activities;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.hossam.android.arabicchallenge5app.R;
+import com.hossam.android.arabicchallenge5app.fragments.MainFragment;
 import com.jkb.fragment.rigger.annotation.Puppet;
 import com.jkb.fragment.rigger.rigger.Rigger;
-
-import cn.hugeterry.coordinatortablayout.CoordinatorTabLayout;
 
 @Puppet(containerViewId = R.id.container, stickyStack = true)
 //@Swiper(parallaxOffset = 0.5f, edgeSide = SwipeEdge.ALL)
