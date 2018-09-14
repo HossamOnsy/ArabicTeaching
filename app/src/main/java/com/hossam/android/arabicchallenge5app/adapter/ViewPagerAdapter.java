@@ -33,8 +33,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
                 return HolderFragment.newInstance(3);
             case 4: // Fragment # 1 - This will show SecondFragment
                 return HolderFragment.newInstance(4);
-            case 5: // Fragment # 1 - This will show SecondFragment
-                return HolderFragment.newInstance(5);
             default:
                 return null;
         }
@@ -43,7 +41,20 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     // Returns the page title for the top indicator
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Page " + position;
-    }
+        switch (position) {
+            case 0: // Fragment # 0 - This will show FirstFragment
+                return "حروف وكلمات";
+            case 1: // Fragment # 0 - This will show FirstFragment different title
+                return "الوان";
+            case 2: // Fragment # 1 - This will show SecondFragment
+                return "جمل عربية";
+            case 3: // Fragment # 1 - This will show SecondFragment
+                return "فلنلعب";
+            case 4: // Fragment # 1 - This will show SecondFragment
+                return "الاعدادات" ;
+            default:
+                return "الاعدادات";
+        }
 
+    }
 }

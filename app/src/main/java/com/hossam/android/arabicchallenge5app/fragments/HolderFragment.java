@@ -55,25 +55,25 @@ public class HolderFragment extends Fragment {
         if (bundle != null) {
             switch (bundle.getInt("position")) {
                 case 0: {
-                    Rigger.getRigger(this).replaceFragment(ShowFragment.newInstance(),R.id.fragments_holder);
+                    Rigger.getRigger(this).showFragment(ShowFragment.newInstance(),R.id.fragments_holder);
                     break;
                 }
                 case 1: {
-                    Rigger.getRigger(this).replaceFragment(ResultFragment.newInstance(),R.id.fragments_holder);
+                    Rigger.getRigger(this).showFragment(ResultFragment.newInstance(),R.id.fragments_holder);
                     break;
                 }
                 case 2: {
-                    Rigger.getRigger(this).replaceFragment(TestFragment.newInstance(),R.id.fragments_holder);
+                    Rigger.getRigger(this).showFragment(TestFragment.newInstance(),R.id.fragments_holder);
 
                     break;
                 }
                 case 3: {
-                    Rigger.getRigger(this).replaceFragment(ResultFragment.newInstance(),R.id.fragments_holder);
+                    Rigger.getRigger(this).showFragment(ResultFragment.newInstance(),R.id.fragments_holder);
 
                     break;
                 }
                 case 4: {
-                    Rigger.getRigger(this).replaceFragment(ShowFragment.newInstance(),R.id.fragments_holder);
+                    Rigger.getRigger(this).showFragment(SettingsFragment.newInstance("",""),R.id.fragments_holder);
 
                     break;
                 }
