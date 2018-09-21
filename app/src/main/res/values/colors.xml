@@ -4,6 +4,11 @@
   <color name="colorPrimaryDark">#3d3b3b</color>
   <color name="colorAccent">#d9caca</color>
 
+  <color name="colorWhite">#ffffff</color>
+  <color name="colorWhity">#eeeeee</color>
+  <color name="colorWhitygrey">#dddddd</color>
+  <color name="colorgreyy">#bbbbbb</color>
+
   <color name="tab_normal">#8a8a8a</color>
   <color name="tab_selected">#46a906</color>
 

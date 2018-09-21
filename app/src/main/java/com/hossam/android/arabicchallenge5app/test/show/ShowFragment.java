@@ -21,9 +21,10 @@ import java.util.ArrayList;
 
 public class ShowFragment extends BaseFragment implements OnClickListener {
 
-  public static ShowFragment newInstance() {
+  public static ShowFragment newInstance(int i) {
     Bundle args = new Bundle();
     ShowFragment fragment = new ShowFragment();
+    args.putInt("ShowFragment",i);
     fragment.setArguments(args);
     return fragment;
   }
@@ -45,13 +46,65 @@ public class ShowFragment extends BaseFragment implements OnClickListener {
       mFragmentTags = new ArrayList<>();
       mContainerTags = new ArrayList<>();
       Fragment[][] fragments = new Fragment[4][2];
-      for (int i = 0; i < 4; i++) {
-        fragments[i][0] = ContainerFragment.newInstance(i, i % 2 == 0,R.raw.finishhim);
-        fragments[i][1] = ContainerFragment.newInstance(4, i % 2 == 0,R.raw.yaatyyauom);
-        mFragmentTags.add(Rigger.getRigger(fragments[i][0]).getFragmentTAG());
-        mContainerTags.add(Rigger.getRigger(fragments[i][1]).getFragmentTAG());
-        Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][0]);
-        Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][1]);
+
+      if((getArguments() != null ? getArguments().getInt("ShowFragment") : 0) ==0) {
+        for (int i = 0; i < 4; i++) {
+          switch (i) {
+            case 0: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.alef, R.drawable.alef);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.arnab, R.drawable.arnab);
+              break;
+            }
+            case 1: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.baa, R.drawable.baa);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.batta, R.drawable.bata);
+              break;
+            }
+            case 2: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.taa, R.drawable.taa);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.tofaha, R.drawable.tofaha);
+              break;
+            }
+            case 3: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.thaa, R.drawable.thaa);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.tha3lab, R.drawable.thaalab);
+              break;
+            }
+          }
+          mFragmentTags.add(Rigger.getRigger(fragments[i][0]).getFragmentTAG());
+          mContainerTags.add(Rigger.getRigger(fragments[i][1]).getFragmentTAG());
+          Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][0]);
+          Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][1]);
+        }
+      }else {
+        for (int i = 0; i < 4; i++) {
+          switch (i) {
+            case 0: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.red, R.drawable.rsz_red);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.red, R.drawable.rsz_red);
+              break;
+            }
+            case 1: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.green, R.drawable.rsz_green);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.green, R.drawable.rsz_green);
+              break;
+            }
+            case 2: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.blue, R.drawable.rsz_blue);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.blue, R.drawable.rsz_blue);
+              break;
+            }
+            case 3: {
+              fragments[i][0] = ContainerFragment.newInstance(i, false, R.raw.yellow, R.drawable.rsz_yellow);
+              fragments[i][1] = ContainerFragment.newInstance(4, false, R.raw.yellow, R.drawable.rsz_yellow);
+              break;
+            }
+          }
+          mFragmentTags.add(Rigger.getRigger(fragments[i][0]).getFragmentTAG());
+          mContainerTags.add(Rigger.getRigger(fragments[i][1]).getFragmentTAG());
+          Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][0]);
+          Rigger.getRigger(this).addFragment(mContainer[i], fragments[i][1]);
+        }
       }
       for (int i = 0; i < 4; i++) {
         Rigger.getRigger(this).showFragment(mFragmentTags.get(i));
@@ -98,7 +151,8 @@ public class ShowFragment extends BaseFragment implements OnClickListener {
   private void showFragment(int position) {
     Fragment fragment = Rigger.getRigger(this).findFragmentByTag(mFragmentTags.get(position));
     Rigger.getRigger(this).showFragment(mFragmentTags.get(position), false);
-    if (position == 2) return;
+    if((getArguments() != null ? getArguments().getInt("ShowFragment") : 0) ==1)
+      return;
     if (fragment.isHidden()) {
       Rigger.getRigger(this).showFragment(mFragmentTags.get(position));
     } else {

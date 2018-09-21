@@ -27,17 +27,18 @@ public class ContainerFragment extends BaseFragment {
     private int position;
     private boolean customAnim;
     private int[] icons = new int[]{
-            R.drawable.heart, R.drawable.block, R.drawable.motorcycle, R.drawable.bear, R.drawable.content_cloud
+            R.drawable.heart, R.drawable.block, R.drawable.motorcycle, R.drawable.bear
     };
     private int[] colors = new int[]{
-            R.color.bg_heart, R.color.bg_block, R.color.bg_motorcycle, R.color.bg_bear, R.color.bg_cloud
+            R.color.colorWhite, R.color.colorWhity, R.color.colorWhitygrey, R.color.colorgreyy
     };
 
-    public static ContainerFragment newInstance(int value, boolean customAnim,int voice) {
+    public static ContainerFragment newInstance(int value, boolean customAnim, int voice, int alef) {
         Bundle args = new Bundle();
         args.putInt(BUNDLE_KEY, value);
         args.putBoolean(BUNDLE_KEY + 1, customAnim);
         args.putInt(BUNDLE_KEY + 2, voice);
+        args.putInt(BUNDLE_KEY + 3, alef);
         ContainerFragment fragment = new ContainerFragment();
         fragment.setArguments(args);
         return fragment;
@@ -58,6 +59,8 @@ public class ContainerFragment extends BaseFragment {
         mp = MediaPlayer.create(getActivity(), args.getInt(BUNDLE_KEY+2));
 
         ImageView imageView = (ImageView) findViewById(R.id.fc_iv);
+
+        imageView.setImageResource(args.getInt(BUNDLE_KEY+3));
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,7 +83,7 @@ public class ContainerFragment extends BaseFragment {
 
     public void onLazyLoadViewCreated(Bundle savedInstanceState) {
         Logger.d(this, "onLazyLoadViewCreated()");
-        ((ImageView) findViewById(R.id.fc_iv)).setImageResource(icons[position % icons.length]);
+
         findViewById(R.id.fc_content)
                 .setBackgroundColor(ContextCompat.getColor(mContext, colors[position % icons.length]));
     }
