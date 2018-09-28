@@ -12,8 +12,11 @@ import android.widget.Button;
 
 import com.hossam.android.arabicchallenge5app.R;
 import com.hossam.android.arabicchallenge5app.activities.ExercisesActivity;
-import com.hossam.android.arabicchallenge5app.test.replace.ReplaceFragment;
+import com.hossam.android.arabicchallenge5app.model.QuestionModel;
+import com.hossam.android.arabicchallenge5app.utils.SharedPreference;
 import com.jkb.fragment.rigger.annotation.Puppet;
+
+import java.util.Objects;
 
 @Puppet
 public class GamesFragment extends Fragment {
@@ -22,6 +25,7 @@ public class GamesFragment extends Fragment {
     public GamesFragment() {
         // Required empty public constructor
     }
+
     public static GamesFragment newInstance() {
         Bundle args = new Bundle();
         GamesFragment fragment = new GamesFragment();
@@ -47,21 +51,24 @@ public class GamesFragment extends Fragment {
         letters_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                QuestionModel qfromshared = SharedPreference.getObjectFromSharedPreference(getActivity(), "0");
+                if (qfromshared == null) {
+                    qfromshared = new QuestionModel("0", "الف", R.drawable.alef, 0.0, false);
+                }
                 startActivity(new Intent(getActivity(), ExercisesActivity.class)
-                        .putExtra("position","0")
-                        .putExtra("word","الف")
-                        .putExtra("drawable",R.drawable.alef));
+                        .putExtra("QuestionModel", qfromshared));
             }
         });
         colors_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                QuestionModel qfromshared = SharedPreference.getObjectFromSharedPreference(getActivity(), "1");
+                if (qfromshared == null) {
+                    qfromshared = new QuestionModel("1", "احمر", R.drawable.rsz_red, 0.0, false);
+                }
                 startActivity(new Intent(getActivity(), ExercisesActivity.class)
-                        .putExtra("position","1")
-                        .putExtra("word","احمر")
-                        .putExtra("drawable",R.drawable.rsz_red));
+                        .putExtra("QuestionModel", qfromshared));
 
             }
         });
@@ -69,10 +76,12 @@ public class GamesFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
+                QuestionModel qfromshared = SharedPreference.getObjectFromSharedPreference(getActivity(), "2");
+                if (qfromshared == null) {
+                    qfromshared = new QuestionModel("2", "الولد يلعب الكر", R.drawable.rsz_football, 0.0, false);
+                }
                 startActivity(new Intent(getActivity(), ExercisesActivity.class)
-                        .putExtra("position","2")
-                        .putExtra("word","الولد يلعب الكر")
-                        .putExtra("drawable",R.drawable.rsz_football));
+                        .putExtra("QuestionModel", qfromshared));
 
             }
         });

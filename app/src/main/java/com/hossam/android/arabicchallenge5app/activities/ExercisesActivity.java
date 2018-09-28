@@ -12,15 +12,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hossam.android.arabicchallenge5app.R;
+import com.hossam.android.arabicchallenge5app.model.QuestionModel;
+import com.hossam.android.arabicchallenge5app.utils.SharedPreference;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class ExercisesActivity extends AppCompatActivity {
     private static final int RESULT_SPEECH = 2019;
     TextView word;
     ImageView image_view;
     String wordToBeComparedTo="";
+    QuestionModel questionModel =null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,30 +31,30 @@ public class ExercisesActivity extends AppCompatActivity {
         ImageView presstoanswer = findViewById(R.id.presstoanswer);
         ImageView image_view = findViewById(R.id.image_view);
         TextView word = findViewById(R.id.word);
-        if (getIntent().hasExtra("word")) {
-            wordToBeComparedTo=getIntent().getStringExtra("word");
-        }
-        if (getIntent().hasExtra("drawable")) {
-            image_view.setImageResource(getIntent().getIntExtra("drawable",R.drawable.tofaha));
-        }
-        if (getIntent().hasExtra("position")) {
-            switch (getIntent().getStringExtra("position")) {
 
-                case "0": {
-                    word.setText("ما هذا الحرف ؟");
-                    break;
-                }
+        if (getIntent().hasExtra("QuestionModel")) {
+            questionModel=getIntent().getParcelableExtra("QuestionModel");
+            wordToBeComparedTo = questionModel.getWord();
+            image_view.setImageResource(questionModel.getDrawable());
 
-                case "1": {
-                    word.setText("ما هذا اللون ؟");
-                    break;
-                }
+                switch (questionModel.getPosition()) {
 
-                case "2": {
+                    case "0": {
+                        word.setText("ما هذا الحرف ؟");
+                        break;
+                    }
 
-                    word.setText("ماذا يفعل الولد ؟");
-                    break;
-                }
+                    case "1": {
+                        word.setText("ما هذا اللون ؟");
+                        break;
+                    }
+
+                    case "2": {
+
+                        word.setText("ماذا يفعل الولد ؟");
+                        break;
+                    }
+
             }
         }
 
@@ -83,8 +85,10 @@ public class ExercisesActivity extends AppCompatActivity {
                     ArrayList<String> text = data
                             .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
                     for (String s : text) {
-                        Log.v("TestingOnActivityResult", "ss ===> " + text);
                         if (s.contains(wordToBeComparedTo)){
+                            questionModel.setProgress(3.33);
+                            questionModel.setAnswered(true);
+                            SharedPreference.SaveObjectInSharedPref(this,questionModel,questionModel.getPosition());
                             Toast.makeText(this, "Bravooooooo", Toast.LENGTH_SHORT).show();
                             finish();
                             break;
