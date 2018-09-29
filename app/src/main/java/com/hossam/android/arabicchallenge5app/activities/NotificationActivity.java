@@ -27,6 +27,10 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
         ButterKnife.bind(this);
 
+        if(SharedPreference.getFromSharedPref(this,"notify").equals("true")){
+            spinnerCompat.setChecked(true);
+        }
+
         spinnerCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {

@@ -12,7 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".activities.MainActivity"
+            android:launchMode="singleTask"
+            android:taskAffinity=""
+            android:excludeFromRecents="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +25,10 @@
         <activity android:name=".activities.ExercisesActivity" />
         <activity android:name=".activities.ProgressActivity" />
         <activity android:name=".activities.NotificationActivity"/>
-        <service android:name=".NotifyService"
-            android:launchMode="singleTask"
-            android:exported="false"/>
+
+        <receiver android:name=".Alarm"
+            android:process=":remote" >
+        </receiver>
     </application>
 
 </manifest>

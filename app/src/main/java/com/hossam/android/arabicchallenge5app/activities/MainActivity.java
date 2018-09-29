@@ -1,19 +1,13 @@
 package com.hossam.android.arabicchallenge5app.activities;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 
-import com.hossam.android.arabicchallenge5app.NotifyService;
+import com.hossam.android.arabicchallenge5app.Alarm;
 import com.hossam.android.arabicchallenge5app.R;
 import com.hossam.android.arabicchallenge5app.fragments.MainFragment;
+import com.hossam.android.arabicchallenge5app.utils.SharedPreference;
 import com.jkb.fragment.rigger.annotation.Puppet;
 import com.jkb.fragment.rigger.rigger.Rigger;
 
@@ -27,7 +21,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(this,NotifyService.class));
+
+        Alarm alarm = new Alarm();
+        alarm.cancelAlarm(this);
+
+        if (SharedPreference.getFromSharedPref(this, "firsttime").equals("false")) {
+            if (SharedPreference.getFromSharedPref(this, "notify").equals("true") || SharedPreference.getFromSharedPref(this, "notify") == null) {
+                SharedPreference.SaveInSharedPref(this, "true", "notify");
+                if (SharedPreference.getFromSharedPref(this, "extrahours").equals("")||SharedPreference.getFromSharedPref(this, "extrahours").equals("24")) {
+                    SharedPreference.SaveInSharedPref(this, "24", "extrahours");
+                    alarm.setAlarm(this);
+                }
+            } else {
+                alarm.cancelAlarm(this);
+            }
+        } else {
+            SharedPreference.SaveInSharedPref(this, "false", "firsttime");
+            SharedPreference.SaveInSharedPref(this, "true", "notify");
+            if (SharedPreference.getFromSharedPref(this, "extrahours").equals("")) {
+                SharedPreference.SaveInSharedPref(this, "24", "extrahours");
+                alarm.setAlarm(this);
+            }
+        }
 //        startNotification();
 
         Rigger.enableDebugLogging(true);
